@@ -1,7 +1,3 @@
-
-Create a folder named `snowflake_scripts` inside your project. Place your `snowflake_setup_complete.sql` file in there, and create this `README.md` right next to it to explain exactly what the SQL script does.
-
-```markdown
 # Snowflake Data Warehouse Architecture
 
 This directory contains the complete backend architecture for the IMDb ELT pipeline. 
