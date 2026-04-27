@@ -38,3 +38,15 @@ The project is structured in a fully automated Modern Data Stack (MDS) workflow:
 └── snowflake_scripts/
     ├── README.md               # Snowflake architecture documentation
     └── snowflake_setup.sql     # Complete DDL and Task setup script
+```
+---
+
+## 🚀 How to Run Locally
+
+Clone this repository: git clone https://github.com/abdullah-mahmoud-de/imdb-serverless-elt-pipeline.git
+
+Install dependencies: pip install -r requirements.txt
+
+Add your secrets.toml file to the .streamlit/ directory with your Snowflake credentials.
+
+Run the application: streamlit run app.py
