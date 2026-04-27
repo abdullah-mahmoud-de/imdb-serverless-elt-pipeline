@@ -15,6 +15,13 @@ An automated, event-driven data pipeline that extracts daily IMDb metadata via A
 
 ---
 
+## 📊 Dataset
+This project utilizes the official, publicly available **IMDb Non-Commercial Datasets**. 
+* **Source:** [https://datasets.imdbws.com/](https://datasets.imdbws.com/)
+* **Files Extracted:** `title.basics.tsv.gz` (core metadata) and `title.akas.tsv.gz` (regional data).
+
+---
+
 ## 🏗️ Architecture Overview
 
 The project is structured in a fully automated Modern Data Stack (MDS) workflow:
@@ -45,8 +52,8 @@ The project is structured in a fully automated Modern Data Stack (MDS) workflow:
 
 Clone this repository: git clone https://github.com/abdullah-mahmoud-de/imdb-serverless-elt-pipeline.git
 
-Install dependencies: pip install -r requirements.txt
+Install dependencies: `pip install -r requirements.txt`
 
-Add your secrets.toml file to the .streamlit/ directory with your Snowflake credentials.
+Add your `secrets.toml` file to the `.streamlit/` directory with your Snowflake credentials.
 
-Run the application: streamlit run app.py
+Run the application: `streamlit run app.py`
