@@ -5,53 +5,7 @@
 ![Snowflake](https://img.shields.io/badge/snowflake-%234285F4.svg?style=for-the-badge&logo=snowflake&logoColor=white)
 ![Streamlit](https://img.shields.io/badge/Streamlit-FF4B4B?style=for-the-badge&logo=Streamlit&logoColor=white)
 
-graph LR
-    %% Data Source
-    IMDB[(IMDb Open Data)]
-
-    %% AWS Cloud
-    subgraph AWS [AWS Cloud]
-        EventBridge[Amazon EventBridge<br>Schedule]
-        Lambda(AWS Lambda<br>Extraction Script)
-        SNS[Amazon SNS<br>Failure Alerts]
-        S3[(Amazon S3<br>Data Lake)]
-    end
-
-    %% Snowflake Data Cloud
-    subgraph Snowflake [Snowflake Data Warehouse]
-        Tasks[Snowflake Tasks<br>Automated CDC]
-        Staging[(Staging Tables<br>Raw Data)]
-        Production[(Production Tables<br>Clean Data)]
-        View[[SQL View<br>v_clean_movies]]
-    end
-
-    %% Application
-    subgraph Frontend [Frontend]
-        Streamlit[Streamlit App<br>Interactive Dashboard]
-    end
-
-    %% Flow connections
-    EventBridge -->|Triggers at 2 AM| Lambda
-    Lambda -->|Fetches TSV files| IMDB
-    Lambda -->|Streams Data| S3
-    Lambda -.->|On Failure| SNS
-    
-    S3 -->|Read by| Tasks
-    Tasks -->|COPY INTO| Staging
-    Staging -->|SQL MERGE| Production
-    Production -->|Queried by| View
-    View -->|SQL Pushdown| Streamlit
-
-    %% Styling
-    classDef aws fill:#FF9900,stroke:#232F3E,stroke-width:2px,color:white;
-    classDef snow fill:#29B5E8,stroke:#1A6692,stroke-width:2px,color:white;
-    classDef app fill:#FF4B4B,stroke:#7D0000,stroke-width:2px,color:white;
-    classDef data fill:#F5C518,stroke:#000000,stroke-width:2px,color:black;
-
-    class EventBridge,Lambda,SNS,S3 aws;
-    class Tasks,Staging,Production,View snow;
-    class Streamlit app;
-    class IMDB data;
+![IMDB_Architecture](IMDB_project_architecture.png)
 
 ## 📌 Executive Summary
 An automated, event-driven data pipeline that extracts daily IMDb metadata via AWS Lambda, merges it into a Snowflake data warehouse, and serves the clean data to a public Streamlit dashboard. 
